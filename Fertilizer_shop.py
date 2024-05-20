@@ -1,4 +1,4 @@
-import sys, datetime, pyttsx3, mysql.connector as sql
+import sys, datetime, os, pyttsx3, pyautogui, mysql.connector as sql
 engine = pyttsx3.init()
 voices = engine.getProperty('voices')
 engine.setProperty('voice',voices[1].id)
@@ -214,6 +214,9 @@ if choice==1:
             v=c.fetchall()
             for i in v:
                 print(i)
+            screen=pyautogui.screenshot()
+            screen.save("out.png")
+            os.system("out.png")
         elif choice==15:
             import matplotlib.pyplot as plt
             t="Select*from stocks"
@@ -226,7 +229,7 @@ if choice==1:
                 Values.append(i[1])
             colors=['red','yellow','black','brown','pink','green','indigo','purple','white','orange']
             plt.pie(Values,labels=Names,colors=colors)
-            plt.title("Manohar Grocery store")
+            plt.title("Beeralingeshwara Agro Fertilizers:")
             plt.show()
         elif choice==16:
             t="Select Date,month(date),year(date),sum(cost) from customer_details group by year(date),month(date),Date"
